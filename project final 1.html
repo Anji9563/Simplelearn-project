@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Creation</title>
+    <script>
+        function validateClient() {
+            // Get user inputs
+            var name = document.getElementById("clientName").value;
+            var email = document.getElementById("clientEmail").value;
+            var address = document.getElementById("clientAddress").value;
+            var password = document.getElementById("clientPassword").value;
+            var repeatPassword = document.getElementById("repeatPassword").value;
+
+            // Simple validation for name, email, address, and password
+            if (name.trim() === "" || address.trim() === "") {
+                alert("Please enter valid name and address.");
+                return false;
+            }
+
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+
+            // Password should be at least 6 characters and match the repeated password
+            if (password.length < 6 || password !== repeatPassword) {
+                alert("Please enter a valid password (at least 6 characters) and ensure both passwords match.");
+                return false;
+            }
+
+            // If everything is valid, submit the form or perform further actions
+            alert("Client information is valid!");
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h2>Client Creation</h2>
+    <form onsubmit="return validateClient()">
+        <label for="clientName">Name:</label>
+        <input type="text" id="clientName" name="clientName" placeholder="Enter Name" required><br><br>
+
+        <label for="clientEmail">Email:</label>
+        <input type="email" id="clientEmail" name="clientEmail" placeholder="Enter Email" required><br><br>
+
+        <label for="clientAddress">Address:</label>
+        <input type="text" id="clientAddress" name="clientAddress" placeholder="Enter address"><br><br>
+
+        <label for="clientPassword">Password:</label>
+        <input type="password" id="clientPassword" name="clientPassword" placeholder="Enter password" required><br<br>
+
+        <label for="repeatPassword">Repeat Password:</label>
+        <input type="password" id="repeatPassword" name="repeatPassword" placeholder="repeat Password" required><br><br>
+
+        <input type="submit" value="Register"><br>
+    </form>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Schedule</title>
+    <script>
+        function validateMeeting() {
+            // Get user inputs
+            var meetingDate = document.getElementById("meetingDate").value;
+            var meetingTopic = document.getElementById("meetingTopic").value;
+            var numPeople = document.getElementById("numPeople").value;
+            var startTime = document.getElementById("startTime").value;
+
+            // Simple validation for meeting date, topic, and number of people
+            var currentDate = new Date();
+            var selectedDateObj = new Date(meetingDate);
+
+            if (selectedDateObj <= currentDate) {
+                alert("Please select a future date for the meeting.");
+                return false;
+            }
+
+            if (meetingTopic.trim() === "") {
+                alert("Please enter a meeting topic.");
+                return false;
+            }
+
+            if (numPeople <= 0) {
+                alert("Please enter a valid number of people.");
+                return false;
+            }
+
+            // Validate start time (you may want to use a more sophisticated time library)
+            if (startTime.trim() === "") {
+                alert("Please enter a valid start time.");
+                return false;
+            }
+
+            // If everything is valid, submit the form or perform further actions
+            alert("Meeting information is valid!");
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h2>Meeting Schedule</h2>
+    <form onsubmit="return validateMeeting()">
+        <label for="meetingDate">Meeting Date:</label>
+        <input type="date" id="meetingDate" name="meetingDate" placeholder="Enter date"><br><br>
+
+        <label for="meetingTopic">Meeting Topic:</label>
+        <input type="text" id="meetingTopic" name="meetingTopic" placeholder="Meeting topic" required><br><br>
+
+        <label for="numPeople">Number of People:</label>
+        <input type="number" id="numPeople" name="numPeople" placeholder="Enter number of people" min="1" required><br><br>
+
+        <label for="startTime">Start Time:</label>
+        <input type="time" id="startTime" name="startTime" required><br><br>
+
+        <input type="submit" value="Schedule Meeting"><br>
+    </form>
+</body>
+</html>
